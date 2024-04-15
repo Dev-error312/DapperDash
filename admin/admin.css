@@ -1,0 +1,56 @@
+.left form {
+    background-color: white;
+    padding: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+
+h1 {
+    text-align: center;
+    color: #4c3624;
+    font-size: xx-large;
+}
+
+label {
+    color: #645656;
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    align-items: start;
+}
+
+input[type="email"], input[type="password"], input[type="text"]{
+    width: 75%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    text-align: center;
+
+}
+
+select {
+    width: 75%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+label{
+    font-size: larger;
+}
+
+.cnc{
+    display: grid;
+    place-content: center;
+  }
+
+.center form{
+    text-align: center;
+    background-color: white;
+    padding: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+
