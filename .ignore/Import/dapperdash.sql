@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 22, 2023 at 03:51 PM
+-- Generation Time: Jun 15, 2024 at 05:32 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `alicestore`
+-- Database: `dapperdash`
 --
 
 -- --------------------------------------------------------
@@ -38,7 +38,8 @@ CREATE TABLE `admindetails` (
 --
 
 INSERT INTO `admindetails` (`a_user`, `a_email`, `a_password`) VALUES
-('Pratigya', 'pratigya@gmail.com', '$2y$10$nHZvDTUTvg1VrvTS0Z9V8eklbDoyyQy4s5qBUMohbIbv.DOa9F9X.');
+('karls', 'suyogadhiakri@gmail.com', '$2y$10$MoyHl/74JB4bYFsk/I5F0.XT3mFwYCCLMuFHj2YTXQQxpIeahSzQy'),
+('rash', 'rash_admin@gmail.com', '$2y$10$Y2csk4cvMPzdghcYgJyWNOLn8FrmSPg1vCl0FbO7THRtGIBYKh3Gy');
 
 -- --------------------------------------------------------
 
@@ -61,8 +62,28 @@ CREATE TABLE `customerdetails` (
 --
 
 INSERT INTO `customerdetails` (`c_id`, `c_email`, `c_pass`, `c_username`, `c_address`, `c_gender`, `c_phone`) VALUES
-(1, 'saurabrtn.bajracharya@gmail.com', '$2y$10$JzniLe0YXDOQWCbs6t8L5e8t3AAeHSVn8Qzx1JEbQREt/q5ogoPk6', 'Saurab Ratna Bajracharya', 'Lagankhel 12, Lalitpur', 0, '981896370a'),
-(2, 'saurebbajracharya@gmail.com', '$2y$10$GAyGK7SM7j7U2vF5enq3GO7XH6hk7Fj33tjIqPi1yguFA7McEBvpa', 'Smriti Thapa', 'Dhapakhel', 0, '1234567890');
+(1, 'suyogadhiakri16@gmail.com', '$2y$10$rc2qwj0wYK8TzpUm37rjWuUhfB586OcOMURzy8r6BesGLpPu7G7AG', 'Suyog Adhikari', 'Budhanilkantha, Ganesh chowk', 0, '9808615325'),
+(2, 'rash@gmail.com', '$2y$10$3or3iYM.t9sS709BIvOon.fLmGizaEXX4yoe7RMHebizV5jSkxqyS', 'Rash Maharjan', 'Bafal, Kathmandu', 0, '9898989898');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `o_id` int(11) NOT NULL,
+  `p_id` int(11) DEFAULT NULL,
+  `c_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`o_id`, `p_id`, `c_id`) VALUES
+(1, 1, 1),
+(3, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -112,6 +133,12 @@ ALTER TABLE `customerdetails`
   ADD UNIQUE KEY `c_email` (`c_email`) USING HASH;
 
 --
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`o_id`);
+
+--
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
@@ -128,10 +155,16 @@ ALTER TABLE `customerdetails`
   MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `o_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

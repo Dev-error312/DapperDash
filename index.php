@@ -18,13 +18,13 @@
 
             <div class="row">
                 <div class="col-2">
-                    <h1>Give Your Outfit<br>A New Style!</h1>
-                    <p>True fashion isn't just about what you wear,<br>it reflects your inner self.</p>
-                    <a href="products.php" class="btn">Explore Now &#8594;</a>
+                    <img src="images/image1.png">
                 </div>
 
                 <div class="col-2">
-                    <img src="images/image1.png">
+                    <h1>Give Your Outfit<br>A New Style!</h1>
+                    <p>True fashion isn't just about what you wear,<br>it reflects your inner self.</p>
+                    <a href="products.php" class="btn">Explore Now &#8594;</a>
                 </div>
             </div>
 

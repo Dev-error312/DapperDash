@@ -24,6 +24,7 @@
                         <th>Product Name</th>
                         <th>Price</th>
                         <th>Product Preview</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,6 +52,7 @@
                                 <p>&#8360; <?php echo $productPrice ?></p>
                             </td>
                             <td><img src="<?php echo $productImgURL; ?>" class="preview"></td>
+                            <td><input type="button" class="btn" onclick="location.href='order-delete.php?o_id=<?php echo $productID ?>';" value="Delete"></td>
                         </tr>
                     <?php
                     }
