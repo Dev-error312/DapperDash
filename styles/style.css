@@ -66,17 +66,27 @@ p {
 .col-2 img {
     max-width: 100%;
     padding: 50px 0;
+    margin: -25px;
 }
 
 .col-2 h1 {
+    position: absolute;
     font-size: 60px;
     font-style: bold;
     line-height: 60px;
-    margin: 25px 0;
+    margin: -500px -100px;
 }
 
 .col-2 p {
+    position: absolute;
     font-size: 20px;
+    margin: -380px -100px;
+    color: #ffffff;
+}
+
+.col-2 a {
+    position: absolute;
+    margin: -300px -100px;
 }
 
 .col-2 h4 {

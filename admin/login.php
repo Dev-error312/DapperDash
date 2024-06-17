@@ -50,6 +50,8 @@ if (isset($_POST['submit'])) {
 
     include("../scripts/serverSide/connection.php");
 
+    $hashPass = ''; 
+
     $passRetrieveQuery = "SELECT a_password FROM admindetails WHERE a_email = '$email'";
     $resultSet = mysqli_query($conn, $passRetrieveQuery);
     if ($rowData = mysqli_fetch_assoc($resultSet)) {

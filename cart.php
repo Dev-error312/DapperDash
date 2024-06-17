@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['id']) || $_SESSION['id'] === null) {
+?>
+    <script type="text/javascript">
+        alert("Please Login First");
+        window.location.href = "login.php";
+    </script>
+<?php
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -67,18 +81,3 @@
 </body>
 
 </html>
-
-
-<?php
-if ($_SESSION['id'] == null) {
-?>
-    <script type="text/javascript">
-        alert("Please Login First");
-        window.location.href = "login.php";
-    </script>
-<?php
-}
-
-
-
-?>

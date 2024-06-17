@@ -26,7 +26,7 @@
         <div>
             <h1>Admin Dashboard</h1>
             <div class="left">
-            <form action="#" methods="post" enctype="multipart/form-data">
+            <form action="#" method="post" enctype="multipart/form-data">
                 <div class="form">
                     <h3>Insert Products</h3><br>
                     <p>Upload Image</p><input type="file" name="product_img" required><br><br>
@@ -48,46 +48,47 @@
 if(isset($_POST['inserttodb'])) {
     if(isset($_FILES['product_img']) && $_FILES['product_img']['error'] === UPLOAD_ERR_OK) {
         $fileName = $_FILES['product_img']['name'];
-
         $fileTmpName = $_FILES['product_img']['tmp_name'];
         
         $fileNameCmps = explode(".", $fileName);
         $fileExtension = strtolower(end($fileNameCmps));
 
-        $allowedFileExtenstions = array('jpg', 'png');
-        if(in_array($fileExtension, $allowedFileExtenstions)) {
+        $allowedFileExtensions = array('jpg', 'png');
+        if(in_array($fileExtension, $allowedFileExtensions)) {
             $uploadFileDir = "../assets/product-image/";
             $dest_path = $uploadFileDir . $fileName;
-            echo $dest_path;
+
             if(move_uploaded_file($fileTmpName, $dest_path)) {
-                $queryPath = "assets/product-iamge/" . $fileName;
+                $queryPath = "assets/product-image/" . $fileName;
+
+                include("../scripts/serverSide/connection.php");
+
+                $product_name = mysqli_real_escape_string($conn, $_POST['product_title']);
+                $product_desc = mysqli_real_escape_string($conn, $_POST['product_desc']);
+                $product_price = floatval($_POST['product_price']);
+
+                if($product_price > 0) {
+                    $insertQuery = "INSERT INTO products(p_name, p_desc, p_price, p_url)
+                                    VALUES ('$product_name', '$product_desc', '$product_price', '$queryPath')";
+
+                    $result = mysqli_query($conn, $insertQuery);
+
+                    if($result) {
+                        echo "<script>alert('Data Inserted Successfully');</script>";
+                    } else {
+                        echo "<script>alert('Error inserting data: " . mysqli_error($conn) . "');</script>";
+                    }
+                } else {
+                    echo "<script>alert('Price cannot be negative or zero.');</script>";
+                }
+
+                mysqli_close($conn);
+            } else {
+                echo "<script>alert('Failed to move uploaded file.');</script>";
             }
         } else {
-            echo "<script>alert('Unsupported Image Format')</script>";
-            exit();
+            echo "<script>alert('Unsupported Image Format');</script>";
         }
-
-        include("..\scripts\serverSide\connection.php");
-        $product_name = $_POST['product_title'];
-        $product_desc = $_POST['product_desc'];
-        $product_price = $_POST['product_price'];
-
-        if($product_price > 1) {
-            $insertQuery = "INSERT INTO products(p_name, p_desc, p_price, p_url)
-                            VALUES ('$product_name', '$product_desc', '$product_price', '$queryPath')";
-
-            $result = mysqli_query($conn, $insertQuery);
-
-            if($result) {
-                echo "<script>alert('Data Inserted Successfully');</script>";
-            }
-        } else {
-            ?>
-                <script>alert("Price cannot be negative nor Zero.");</script>
-            <?php
-        }
-
-        $conn->close();
     }
 }
 ?>

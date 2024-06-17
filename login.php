@@ -52,13 +52,15 @@ if (isset($_POST['submit'])) {
 
     include("scripts\serverSide\connection.php");
 
+    $hashPass = ''; 
+
     $passRetrieveQuery = "SELECT c_pass FROM customerdetails WHERE c_email = '$email'";
     $resultSet = mysqli_query($conn, $passRetrieveQuery);
     if ($rowData = mysqli_fetch_assoc($resultSet)) {
         $hashPass = $rowData['c_pass'];
     }
 
-    if (password_verify($pass, $hashPass)) {
+    if (!empty($hashPass) && password_verify($pass, $hashPass)) {
         $loginQuery = "SELECT c_id, c_username
                     FROM customerdetails
                     WHERE c_email = '$email';";
@@ -69,6 +71,7 @@ if (isset($_POST['submit'])) {
             $_SESSION['username'] = $rowData['c_username'];
             $_SESSION['id'] =  $rowData['c_id'];
             header('Location: index.php');
+            exit(); // Always exit after a header redirect
         }
     } else {
         echo "<script>
@@ -77,6 +80,4 @@ if (isset($_POST['submit'])) {
     }
 
 }
-
-
 ?>
